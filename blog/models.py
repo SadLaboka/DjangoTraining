@@ -24,6 +24,8 @@ class Category(models.Model):
 
     class Meta:
         ordering = ['title']
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
 
 class Tag(models.Model):
@@ -35,6 +37,8 @@ class Tag(models.Model):
 
     class Meta:
         ordering = ['title']
+        verbose_name = 'Тэг'
+        verbose_name_plural = 'Тэги'
 
 
 class Post(models.Model):
@@ -53,3 +57,5 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
