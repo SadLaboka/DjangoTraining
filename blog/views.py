@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Post, Category, Tag
+from django.db.models import F
 
 
 class Home(ListView):
@@ -30,3 +31,18 @@ class PostsByCategory(ListView):
         return context
 
 
+class GetPost(DetailView):
+    model = Post
+    template_name = 'blog/single.html'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        self.object.views = F('views') + 1
+        self.object.save()
+        self.object.refresh_from_db()
+        return context
+
+
+class PostsByTag(ListView):
+    pass
